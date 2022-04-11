@@ -22,3 +22,17 @@ class Solution:
             if rightSide:
                 res.append(rightSide.val) 
         return res
+
+    
+    def gettingSideSideView(self, root: TreeNode) -> List[int]:
+#         O(n)
+        def rightSideView(root, depth=0, res=[]):
+            if root is not None:
+                if depth == len(res):
+                    res.append(root.val)
+                rightSideView(root.right, depth+1, res)
+                rightSideView(root.left, depth+1, res)
+                
+        return rightSideView(root)
+        
+        

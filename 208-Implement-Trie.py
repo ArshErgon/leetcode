@@ -47,3 +47,53 @@ class Trie:
                 return False
             curr = curr.children[i]
         return True
+    
+    
+    
+    
+# Trie with dictionary
+
+
+
+
+class TrieNode:
+    def __init__(self, letter):
+        self.children = {}
+        self.isEnd = False
+
+
+    
+class Trie:
+    def __init__(self):
+        self.root = TrieNode(None)
+
+    def insert(self, words):
+        node = self.root
+        for letter in words:
+            if letter not in node.children:
+                node.children[letter] = TrieNode(letter)
+            node = node.children[letter]
+
+        node.isEnd = True
+
+    
+    def contains(self, words):
+        node = self.root
+        for letter in words:
+            if letter not in node.children:
+                return False
+            node = node.children[letter]
+        return node.isEnd
+
+
+    
+    def startWith(self, word):
+        node = self.root
+        for letter in word:
+            if letter not in node.children:
+                return False
+            node = node.children[letter]
+        return True
+
+
+
